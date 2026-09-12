@@ -1,0 +1,10 @@
+.main { width: min(100% - 48px, 1200px); min-height: calc(100vh - 68px); margin: 0 auto; padding: 72px 0 56px; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
+.loadWrap { display: flex; justify-content: center; padding-top: 40px; }
+.load { min-width: 156px; height: 44px; border: 1px solid var(--cyan); border-radius: 10px; background: transparent; color: var(--ink); }
+.load:hover:not(:disabled) { background: #fff; }
+.load:disabled { opacity: .6; cursor: wait; }
+.error { margin: 100px auto; max-width: 500px; text-align: center; }
+.error h2 { margin-bottom: 8px; }
+.error p { color: #667085; }
+.error button { border: 0; border-radius: 10px; background: var(--cyan); color: #fff; padding: 12px 24px; }

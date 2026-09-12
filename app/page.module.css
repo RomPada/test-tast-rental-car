@@ -1,0 +1,33 @@
+.hero {
+  position: relative;
+  min-height: calc(100vh - 68px);
+  overflow: hidden;
+  display: grid;
+  place-items: end center;
+}
+
+.image { object-fit: cover; object-position: center; }
+.overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.02) 35%, rgba(0,0,0,.48) 100%); }
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  padding: 0 24px 52px;
+}
+.content h1 { margin: 0 0 18px; font-size: clamp(42px, 4.2vw, 64px); line-height: 1.08; letter-spacing: -.035em; }
+.content p { margin: 0 0 32px; font-size: 22px; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 276px;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 12px;
+  background: var(--cyan);
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 160ms ease;
+}
+.cta:hover { background: var(--cyan-hover); }
