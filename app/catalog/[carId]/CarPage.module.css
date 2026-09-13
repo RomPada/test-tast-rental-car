@@ -1,0 +1,31 @@
+.main {
+  min-height: calc(100vh - var(--header-height));
+  padding: 72px 0 72px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'image' 'info' 'form';
+  gap: 32px;
+  align-items: start;
+}
+.image {
+  grid-area: image;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 512;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.info {
+  grid-area: info;
+}
+.form {
+  grid-area: form;
+}
+@media (min-width: 1280px) {
+  .layout {
+    grid-template-columns: 640px minmax(0, 1fr);
+    grid-template-areas: 'image info' 'form info';
+  }
+}

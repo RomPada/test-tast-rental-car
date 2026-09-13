@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0 48px;
+  text-align: center;
+}
+.content {
+  max-width: 420px;
+}
+.content h2 {
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+.content p {
+  color: #475467;
+}

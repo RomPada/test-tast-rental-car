@@ -1,8 +1,37 @@
 import type { Metadata } from 'next';
-import Catalog from '@/components/Catalog';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import CatalogClient from './CatalogClient';
+import { fetchCarFilters, fetchCars } from '@/lib/api';
+import { CARS_PER_PAGE, ROUTES, SITE_URL } from '@/lib/constants';
+import { parseCarFilters } from '@/lib/filters';
+import { carFiltersKey, carsKey } from '@/lib/queryKeys';
 
-export const metadata: Metadata = { title: 'Catalog | RentalCar' };
+export const metadata: Metadata = {
+  title: 'Catalog',
+  description: 'Browse and filter available RentalCar vehicles.',
+  alternates: { canonical: `${SITE_URL}${ROUTES.catalog}` },
+};
 
-export default function CatalogPage() {
-  return <Catalog />;
+type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
+
+export default async function CatalogPage({ searchParams }: Props) {
+  const filters = parseCarFilters(await searchParams);
+  const client = new QueryClient();
+
+  await Promise.all([
+    client.prefetchQuery({ queryKey: carFiltersKey, queryFn: fetchCarFilters }),
+    client.prefetchInfiniteQuery({
+      queryKey: carsKey(filters),
+      queryFn: ({ pageParam }) => fetchCars(pageParam, filters, CARS_PER_PAGE),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) =>
+        lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+    }),
+  ]);
+
+  return (
+    <HydrationBoundary state={dehydrate(client)}>
+      <CatalogClient filters={filters} />
+    </HydrationBoundary>
+  );
 }

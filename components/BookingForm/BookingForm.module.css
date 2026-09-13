@@ -1,0 +1,65 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 16px;
+  background: #fff;
+}
+.form h2 {
+  margin-bottom: 6px;
+  font-size: 20px;
+}
+.form p {
+  color: var(--color-gray);
+}
+.fields {
+  display: grid;
+  gap: 14px;
+}
+.field {
+  position: relative;
+  display: grid;
+  gap: 4px;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 48px 13px 20px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--color-inputs);
+  outline: none;
+  resize: none;
+}
+.field textarea {
+  min-height: 88px;
+}
+.field input:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--color-gray-light);
+}
+.field .invalid {
+  border-color: var(--color-error);
+  background: var(--color-error-bg);
+}
+.field small {
+  color: var(--color-error);
+  font-size: 12px;
+}
+.icon {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  color: var(--color-error);
+}
+.form > button {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .form {
+    padding: 32px;
+  }
+}

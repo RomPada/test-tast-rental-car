@@ -1,8 +1,0 @@
-.overlay { position: fixed; z-index: 50; inset: 68px 0 0; display: grid; place-items: center; background: rgba(255,255,255,.76); backdrop-filter: blur(1px); }
-.box { width: 420px; min-height: 220px; border-radius: 18px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 18px 55px rgba(16,24,40,.14); }
-.spinner,.compact { display: inline-block; border-radius: 50%; border: 4px solid #e7eaee; border-top-color: var(--cyan); animation: spin .8s linear infinite; }
-.spinner { width: 52px; height: 52px; margin-bottom: 20px; }
-.compact { width: 20px; height: 20px; border-width: 2px; }
-.box strong { font-size: 20px; }
-.box p { color: #667085; text-align: center; font-size: 14px; line-height: 1.35; }
-@keyframes spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,28 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px 24px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.item {
+  display: flex;
+  min-width: 0;
+}
+
+.item > * {
+  flex: 1 1 auto;
+}
+
+@media (min-width: 768px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

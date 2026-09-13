@@ -1,0 +1,27 @@
+.header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-badges);
+}
+.inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.navList {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.navList a {
+  transition: color var(--transition);
+}
+.navList a:hover,
+.navList a:focus-visible,
+.active {
+  color: var(--color-accent);
+}

@@ -1,0 +1,40 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgb(245 245 245 / 0.88);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: min(543px, calc(100% - 32px));
+  padding: 40px 24px;
+  text-align: center;
+  border-radius: 16px;
+  background: #fff;
+}
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 7px solid var(--color-inputs);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.card strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+.card p {
+  margin: 0;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
