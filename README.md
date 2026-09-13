@@ -114,3 +114,11 @@ public/images/
 ```
 
 Each component has a single implementation in its own folder; legacy duplicate component copies are not included in the final project archive.
+
+## Author
+
+[RomPad.Corp](https://github.com/RomPada/test-tast-rental-car)
+
+## P.S.
+
+🥚
