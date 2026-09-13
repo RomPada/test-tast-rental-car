@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import 'modern-normalize/modern-normalize.css';
 import './globals.css';
 import Header from '@/components/Header/Header';
+import EasterEgg from '@/components/EasterEgg/EasterEgg';
 import QueryProvider from '@/components/QueryProvider/QueryProvider';
 import { OG_IMAGE, SITE_NAME, SITE_URL, TOAST_DURATION } from '@/lib/constants';
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" className={manrope.variable} data-scroll-behavior="smooth">
       <body>
+        <EasterEgg />
         <QueryProvider>
           <Header />
           {children}

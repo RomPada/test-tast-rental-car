@@ -5,7 +5,9 @@ import { OG_IMAGE, ROUTES, SITE_NAME, SITE_URL } from '@/lib/constants';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: {
+    absolute: `Home | ${SITE_NAME}`,
+  },
   description: 'Find your perfect rental car with RentalCar.',
   alternates: { canonical: SITE_URL },
   openGraph: {
