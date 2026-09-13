@@ -2,17 +2,16 @@
 
 import ErrorView from '@/components/ErrorView/ErrorView';
 
-export default function CarError({
-  error,
-  reset,
-}: {
+type Props = {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+};
+
+export default function CarError({ reset }: Props) {
   return (
     <ErrorView
       title="Unable to load this car"
-      message={error.message || 'Please try again.'}
+      message="Something went wrong. Please try again."
       retry={reset}
     />
   );

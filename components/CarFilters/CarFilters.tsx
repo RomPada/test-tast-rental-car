@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useMemo, useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/Button/Button';
 import { buildCatalogHref, getPriceOptions, isMileageRangeValid } from '@/lib/filters';
@@ -27,8 +27,6 @@ export default function CarFiltersForm({
   const [draft, setDraft] = useState<Draft>(() => toDraft(filters));
   const [rangeError, setRangeError] = useState('');
   const prices = useMemo(() => getPriceOptions(meta), [meta]);
-
-  useEffect(() => setDraft(toDraft(filters)), [filters]);
 
   const apply = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

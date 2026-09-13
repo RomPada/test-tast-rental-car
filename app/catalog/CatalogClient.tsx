@@ -10,6 +10,8 @@ import EmptyState from '@/components/EmptyState/EmptyState';
 import Loader from '@/components/Loader/Loader';
 import { fetchCarFilters, fetchCars } from '@/lib/api';
 import { CARS_PER_PAGE } from '@/lib/constants';
+import { buildCatalogHref } from '@/lib/filters';
+import { getNextCarsPage } from '@/lib/pagination';
 import { carFiltersKey, carsKey } from '@/lib/queryKeys';
 import type { CarFilters } from '@/types/car';
 import styles from './Catalog.module.css';
@@ -20,8 +22,7 @@ export default function CatalogClient({ filters }: { filters: CarFilters }) {
     queryKey: carsKey(filters),
     queryFn: ({ pageParam }) => fetchCars(pageParam, filters, CARS_PER_PAGE),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) =>
-      lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+    getNextPageParam: getNextCarsPage,
   });
 
   const cars = useMemo(
@@ -34,10 +35,14 @@ export default function CatalogClient({ filters }: { filters: CarFilters }) {
   return (
     <main className={styles.main}>
       <Container>
-        {metaQuery.data && <CarFiltersForm meta={metaQuery.data} filters={filters} />}
+        {metaQuery.data && (
+          <CarFiltersForm key={buildCatalogHref(filters)} meta={metaQuery.data} filters={filters} />
+        )}
 
         <section className={styles.results} aria-live="polite">
-          {cars.length === 0 && !carsQuery.isPending ? (
+          {carsQuery.isPending ? (
+            <Loader />
+          ) : cars.length === 0 ? (
             <EmptyState />
           ) : (
             <>

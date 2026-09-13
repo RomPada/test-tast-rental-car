@@ -1,6 +1,12 @@
 # RentalCar
 
-Clean final implementation of the GoIT RentalCar task.
+Frontend application for the GoIT RentalCar test task. The project implements a car-rental catalog based on the provided Figma design and Rental Car API.
+
+## Live project
+
+- Repository: https://github.com/RomPada/test-tast-rental-car
+- Deployment: Vercel or Netlify (provide the deployed URL with the final submission)
+- Author: RomPada.corp
 
 ## Stack
 
@@ -14,15 +20,15 @@ Clean final implementation of the GoIT RentalCar task.
 ## Features
 
 - `/` hero page with **View Catalog** CTA
-- `/catalog` with backend filtering by brand, price and mileage
+- `/catalog` with backend filtering by brand, price, and mileage
 - filter state stored in URL search params
 - server prefetch + TanStack Query hydration for the first catalog page
 - **Load more** pagination through `useInfiniteQuery`
-- loading, empty and error states
-- `/catalog/[carId]` details page opened from cards in a new tab
+- loading, empty, and error states
+- `/catalog/[carId]` details page opened from cards in a new browser tab
 - rental booking form with validation and POST to `/cars/:carId/booking-requests`
 - success/error notifications
-- metadata, canonical URLs and Open Graph
+- page metadata, canonical URLs, and Open Graph data
 - responsive layout in addition to the required desktop version
 
 ## API
@@ -44,32 +50,48 @@ POST /cars/:id/booking-requests
 
 The API URL can optionally be overridden with `NEXT_PUBLIC_API_URL`.
 
-## Start
+## Installation and local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Production check:
-
-```bash
-npm run lint
-npm run build
-```
+Open `http://localhost:3000`.
 
 ## Environment
 
-`.env` is optional because the task API has a code fallback. If you want explicit environment values, copy `.env.example` to `.env`:
+Environment variables are optional for local development because the application contains fallbacks for the task API and localhost.
+
+To configure them explicitly, copy `.env.example` to `.env.local`:
 
 ```env
 NEXT_PUBLIC_API_URL=https://car-rental-api.goit.study
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-For Vercel set `NEXT_PUBLIC_SITE_URL` to your deployed project URL.
+For Vercel or Netlify, set `NEXT_PUBLIC_SITE_URL` to the deployed project URL.
 
-## Structure
+## Production checks
+
+Before submission, run:
+
+```bash
+npm run format:check
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
+All commands should complete without errors.
+
+## Routes
+
+- `/` — home page
+- `/catalog` — catalog, filters, and Load More pagination
+- `/catalog/[carId]` — car details and rental booking form
+
+## Project structure
 
 ```text
 app/
@@ -91,4 +113,4 @@ types/
 public/images/
 ```
 
-There are no duplicate root-level component copies: each component has a single implementation in its own folder.
+Each component has a single implementation in its own folder; legacy duplicate component copies are not included in the final project archive.

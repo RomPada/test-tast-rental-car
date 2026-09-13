@@ -2,31 +2,37 @@ import Link from 'next/link';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './Button.module.css';
 
-type Props = {
+type CommonProps = {
   children: ReactNode;
   className?: string;
   variant?: 'primary' | 'outline';
-  href?: string;
-  target?: '_blank';
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+};
 
-export default function Button({
-  children,
-  className = '',
-  variant = 'primary',
-  href,
-  target,
-  ...buttonProps
-}: Props) {
+type LinkButtonProps = CommonProps & {
+  href: string;
+  target?: '_blank';
+  disabled?: never;
+  type?: never;
+};
+
+type NativeButtonProps = CommonProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: never;
+    target?: never;
+  };
+
+type Props = LinkButtonProps | NativeButtonProps;
+
+export default function Button({ children, className = '', variant = 'primary', ...props }: Props) {
   const classes = `${styles.button} ${styles[variant]} ${className}`.trim();
 
-  if (href) {
+  if (props.href) {
     return (
       <Link
         className={classes}
-        href={href}
-        target={target}
-        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        href={props.href}
+        target={props.target}
+        rel={props.target === '_blank' ? 'noopener noreferrer' : undefined}
       >
         {children}
       </Link>
@@ -34,7 +40,7 @@ export default function Button({
   }
 
   return (
-    <button className={classes} {...buttonProps}>
+    <button className={classes} {...props}>
       {children}
     </button>
   );

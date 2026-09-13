@@ -2,17 +2,16 @@
 
 import ErrorView from '@/components/ErrorView/ErrorView';
 
-export default function CatalogError({
-  error,
-  reset,
-}: {
+type Props = {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+};
+
+export default function CatalogError({ reset }: Props) {
   return (
     <ErrorView
       title="Unable to load cars"
-      message={error.message || 'Please try again.'}
+      message="Something went wrong. Please try again."
       retry={reset}
     />
   );

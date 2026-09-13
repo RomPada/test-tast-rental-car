@@ -4,6 +4,7 @@ import CatalogClient from './CatalogClient';
 import { fetchCarFilters, fetchCars } from '@/lib/api';
 import { CARS_PER_PAGE, ROUTES, SITE_URL } from '@/lib/constants';
 import { parseCarFilters } from '@/lib/filters';
+import { getNextCarsPage } from '@/lib/pagination';
 import { carFiltersKey, carsKey } from '@/lib/queryKeys';
 
 export const metadata: Metadata = {
@@ -24,8 +25,7 @@ export default async function CatalogPage({ searchParams }: Props) {
       queryKey: carsKey(filters),
       queryFn: ({ pageParam }) => fetchCars(pageParam, filters, CARS_PER_PAGE),
       initialPageParam: 1,
-      getNextPageParam: (lastPage) =>
-        lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+      getNextPageParam: getNextCarsPage,
     }),
   ]);
 

@@ -14,7 +14,7 @@ export default function Header() {
     <header className={styles.header}>
       <Container className={styles.inner}>
         <Link className={styles.logo} href={ROUTES.home} aria-label="RentalCar home">
-          <Image src="/images/logo.svg" alt="RentalCar" width={104} height={20} priority />
+          <Image src="/images/logo.svg" alt="RentalCar" width={104} height={16} priority />
         </Link>
         <nav aria-label="Main navigation">
           <ul className={styles.navList}>

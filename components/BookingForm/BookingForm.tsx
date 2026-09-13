@@ -42,26 +42,33 @@ export default function BookingForm({ carId }: { carId: string }) {
     booking.mutate(normalizeBooking(values));
   };
 
-  const field = (name: keyof BookingRequest, placeholder: string, type = 'text') => (
-    <label className={styles.field}>
-      <span className="visually-hidden">{placeholder}</span>
-      <input
-        className={errors[name] ? styles.invalid : ''}
-        name={name}
-        type={type}
-        value={values[name]}
-        placeholder={placeholder}
-        onChange={change}
-        autoComplete={name === 'name' ? 'name' : name === 'email' ? 'email' : undefined}
-      />
-      {errors[name] && (
-        <>
-          <LuCircleAlert className={styles.icon} aria-hidden="true" />
-          <small>{errors[name]}</small>
-        </>
-      )}
-    </label>
-  );
+  const field = (name: keyof BookingRequest, placeholder: string, type = 'text') => {
+    const errorId = `${name}-error`;
+    const hasError = Boolean(errors[name]);
+
+    return (
+      <label className={styles.field}>
+        <span className="visually-hidden">{placeholder}</span>
+        <input
+          aria-describedby={hasError ? errorId : undefined}
+          aria-invalid={hasError}
+          className={hasError ? styles.invalid : ''}
+          name={name}
+          type={type}
+          value={values[name]}
+          placeholder={placeholder}
+          onChange={change}
+          autoComplete={name === 'name' ? 'name' : name === 'email' ? 'email' : undefined}
+        />
+        {errors[name] && (
+          <>
+            <LuCircleAlert className={styles.icon} aria-hidden="true" />
+            <small id={errorId}>{errors[name]}</small>
+          </>
+        )}
+      </label>
+    );
+  };
 
   return (
     <form className={styles.form} onSubmit={submit} noValidate>
@@ -74,19 +81,21 @@ export default function BookingForm({ carId }: { carId: string }) {
         {field('name', 'Name*')}
         {field('email', 'Email*', 'email')}
         <label className={styles.field}>
-          <span className="visually-hidden">Comment</span>
+          <span className="visually-hidden">Comment*</span>
           <textarea
+            aria-describedby={errors.comment ? 'comment-error' : undefined}
+            aria-invalid={Boolean(errors.comment)}
             className={errors.comment ? styles.invalid : ''}
             name="comment"
             value={values.comment}
-            placeholder="Comment"
+            placeholder="Comment*"
             rows={3}
             onChange={change}
           />
           {errors.comment && (
             <>
               <LuCircleAlert className={styles.icon} aria-hidden="true" />
-              <small>{errors.comment}</small>
+              <small id="comment-error">{errors.comment}</small>
             </>
           )}
         </label>

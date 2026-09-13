@@ -6,7 +6,7 @@ import styles from './EmptyState.module.css';
 export default function EmptyState() {
   return (
     <section className={styles.wrapper}>
-      <Image src="/images/not-found.png" alt="No cars found" width={413} height={413} />
+      <Image src="/images/not-found.png" alt="No cars found" width={414} height={388} />
       <div className={styles.content}>
         <h2>No cars found</h2>
         <p>

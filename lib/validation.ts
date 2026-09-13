@@ -18,7 +18,7 @@ export function validateBooking(values: BookingRequest): BookingErrors {
     errors.email = 'Please enter a valid email.';
   }
   if (!comment) {
-    errors.comment = 'Comment is required';
+    errors.comment = 'Comment is required.';
   }
 
   return errors;
